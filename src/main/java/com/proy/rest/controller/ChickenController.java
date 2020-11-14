@@ -20,7 +20,7 @@ public class ChickenController {
 	public String createChicken() {
 		return "create Chicken was called";
 	}
-	
+	  
 	@PutMapping		
 	public String updateChicken() {
 		return "update Chicken was called";

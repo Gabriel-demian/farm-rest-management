@@ -1,4 +1,4 @@
-package com.proy.rest.dao;
+package com.proy.rest.dao.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.proy.rest.dao.FarmRepository;
 import com.proy.rest.entity.Farm;
 
 
@@ -23,7 +24,7 @@ public class FarmRepositoryImpl  implements FarmRepository {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Farm> theQuery = currentSession.createQuery("from farm order by lastName", Farm.class);
+		Query<Farm> theQuery = currentSession.createQuery("from farm order by farm_name", Farm.class);
 
 		List<Farm> farmList = theQuery.getResultList();
 		
@@ -53,7 +54,7 @@ public class FarmRepositoryImpl  implements FarmRepository {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query theQuery = currentSession.createQuery("delete from farm where id=:farmId");
+		Query theQuery = currentSession.createQuery("delete from farm where farm_id=:farmId");
 		
 		theQuery.setParameter("farmId", theId);
 		

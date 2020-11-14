@@ -2,20 +2,19 @@ package com.proy.rest.services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.proy.rest.entity.Farm;
 
-@Service
+
 public interface FarmService {
 	
 	public List<Farm> getFarms();
+	
+	public Farm getFarm(Integer farmId);
+	
+	public void saveOrUpdateFarm(Farm theFarm);
 
-	public void saveFarm(Farm theFarm);
+	public void deleteFarm(Integer theId);
 
-	public Farm getFarm(int theId);
-
-	public void deleteFarm(int theId);
-
+	public List<Farm> searchFarms(String theSearchName);
+	
 }

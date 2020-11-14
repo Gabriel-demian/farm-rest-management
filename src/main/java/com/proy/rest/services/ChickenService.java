@@ -1,11 +1,11 @@
-package com.proy.rest.dao;
+package com.proy.rest.services;
 
 import java.util.List;
 
 import com.proy.rest.entity.Chicken;
 
-public interface ChickenRepository{
-	
+public interface ChickenService {
+
 	public List<Chicken> getChickens();
 	
 	public List<Chicken> getChickensByFarmId(Integer farmId);
@@ -15,5 +15,4 @@ public interface ChickenRepository{
 	public void saveOrUpdateChicken(Chicken theChiken);
 
 	public void deleteChicken(Integer theId);
-
 }

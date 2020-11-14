@@ -1,10 +1,10 @@
-package com.proy.rest.dao;
+package com.proy.rest.services;
 
 import java.util.List;
 
 import com.proy.rest.entity.Egg;
 
-public interface EggRepository{
+public interface EggService {
 	
 	public List<Egg> getEggs();
 	

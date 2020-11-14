@@ -1,12 +1,10 @@
 package com.proy.rest.services.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.proy.rest.dao.FarmRepository;
 import com.proy.rest.entity.Farm;
@@ -16,34 +14,39 @@ import com.proy.rest.services.FarmService;
 public class FarmServiceImpl implements FarmService{
 	
 	@Autowired
-	private FarmRepository farmDAO; 
+	private FarmRepository farmRepository;
 
 	@Override
+	@Transactional
 	public List<Farm> getFarms() {
-		// TODO Auto-generated method stub
-		return null;
+		return farmRepository.getFarms();
 	}
 
 	@Override
-	public void saveFarm(Farm theFarm) {
-		// TODO Auto-generated method stub
+	@Transactional
+	public Farm getFarm(Integer farmId) {
+		return farmRepository.getFarm(farmId);
+	}
+
+	@Override
+	@Transactional
+	public void saveOrUpdateFarm(Farm theFarm) {
+		farmRepository.saveOrUpdateFarm(theFarm);
 		
 	}
 
 	@Override
-	public Farm getFarm(int theId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteFarm(int theId) {
-		// TODO Auto-generated method stub
+	@Transactional
+	public void deleteFarm(Integer theId) {
+		farmRepository.deleteFarm(theId);
 		
 	}
 
-	
+	@Override
+	@Transactional
+	public List<Farm> searchFarms(String theSearchName) {
+		return farmRepository.searchFarms(theSearchName);
+	}
 
-	
 
 }

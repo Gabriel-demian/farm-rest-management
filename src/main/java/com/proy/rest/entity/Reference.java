@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 
-public class References {
+public class Reference {
 	
 	@Column(name="egg_expiration_date")
 	private Integer eggExpirationDate;
