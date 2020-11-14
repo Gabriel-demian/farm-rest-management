@@ -3,7 +3,11 @@ package com.proy.rest.entity;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "reference")
 public class Reference {
 	
 	@Column(name="egg_expiration_date")
