@@ -1,81 +1,80 @@
 package com.proy.rest.controller;
 
-import java.util.Map;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proy.rest.entity.Farm;
 import com.proy.rest.services.FarmService;
 
 @RestController
-@RequestMapping("/farms") // http://localhost:8080/farms
+@RequestMapping("/api/farms")
 public class FarmController {
-	
-	Map<Integer, Farm> farms;
 	
 	@Autowired
 	FarmService farmService;
 	
+	
+//	@GetMapping
+//	public String getFarms(@RequestParam(value="page") int page,
+//							@RequestParam(value="limit") int limit) {	// to support pagination in future
+//		return "get farm was called, page = " + page + " and limit = " + limit;
+//	}
+	
+	
 	@GetMapping
-	public String getFarms(@RequestParam(value="page") int page,
-							@RequestParam(value="limit") int limit) {	// to support pagination in future
-		return "ger farm was called, page = " + page + " and limit = " + limit;
+	@ResponseStatus(HttpStatus.OK)
+	public Iterable<Farm> getAllFarms(){
+		return farmService.getFarms();
 	}
 	
 	
 	@GetMapping(path = "/{farmId}")
-	public ResponseEntity<Farm> getFarm(@PathVariable Integer farmId) {
+	@ResponseStatus(HttpStatus.FOUND)
+	public Farm getFarm(@PathVariable Integer farmId) {
 
-		if(farms.containsKey(farmId)) {
-			return new ResponseEntity<>(farms.get(farmId), HttpStatus.OK); 
-		}else {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
-		}
+		return farmService.getFarm(farmId);
+		
 	}
 	
-	//TODO comentado hasta terminar los service.
-//	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, 
-//				produces = {MediaType.APPLICATION_JSON_VALUE} )
-//	public ResponseEntity<Farm> createFarm(@RequestBody Farm dataFarm) {
-//		
-//		//Farm newFarm = farmService.createUser(dataFarm);
-//		
-//		return new ResponseEntity<Farm>(newFarm, HttpStatus.OK);
-//	}
+	
+	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, 
+				produces = {MediaType.APPLICATION_JSON_VALUE} )
+	@ResponseStatus(HttpStatus.CREATED)
+	public void createFarm(@RequestBody @Valid Farm dataFarm) {
+		
+		farmService.saveOrUpdateFarm(dataFarm);
+		
+	}
 	
 	
 	@PutMapping(path = "/{farmId}", 
 			consumes = {MediaType.APPLICATION_JSON_VALUE}, 
 			produces = {MediaType.APPLICATION_JSON_VALUE} )
-	public Farm updateFarm(@PathVariable Integer farmId, @RequestBody Farm updatedFarm) {
+	@ResponseStatus(HttpStatus.OK)
+	public void updateFarm(@PathVariable Integer farmId, @RequestBody Farm updatedFarm) {
 		
-		Farm existingFarm = farms.get(farmId);
-//		existingFarm.setFarm_name(updatedFarm.getFarm_name());
-//		existingFarm.setChicken_bought(existingFarm.getChicken_bought());
-		
-		farms.put(farmId, existingFarm);
-		
-		return existingFarm;
+		farmService.saveOrUpdateFarm(updatedFarm);
 		
 	}
 	
 	
 	@DeleteMapping(path = "/{farmId}")
-	public ResponseEntity<Void> deleteFarm(@PathVariable Integer farmId) {
+	public void deleteFarm(@PathVariable Integer farmId) {
 		
-		farms.remove(farmId);
-		
-		return ResponseEntity.noContent().build();
+			farmService.deleteFarm(farmId);
+			
 	}
+	
 }
