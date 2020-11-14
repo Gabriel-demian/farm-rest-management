@@ -2,6 +2,7 @@ package com.proy.rest.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,23 +15,32 @@ import javax.validation.constraints.NotNull;
 public class Farm {
 	
 	@Id
+	@Column(name="farm_Id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer farmId;
 	
-	
+	@Column(name="farm_Name")
 	@NotNull(message="Farm Name can't be null")
 	private String farmName;
 	
+	@Column(name="chicken_Bought")
 	private Integer chickenBought;
+	
+	@Column(name="chicken_Sold")
 	private Integer chickenSold;
+	
+	@Column(name="egg_Bought")
 	private Integer eggBought;
+	
+	@Column(name="egg_Sold")
 	private Integer eggSold;
 
+	@Column(name="income")
 	private BigDecimal income;
+	
+	@Column(name="expenses")
 	private BigDecimal expenses;
 	
-	private BigDecimal chSalePrice;
-	private BigDecimal eggSalePrice;
 	
 	public Farm() {
 		
@@ -99,26 +109,5 @@ public class Farm {
 	public void setExpenses(BigDecimal expenses) {
 		this.expenses = expenses;
 	}
-
-	public BigDecimal getChSalePrice() {
-		return chSalePrice;
-	}
-
-	public void setChSalePrice(BigDecimal chSalePrice) {
-		this.chSalePrice = chSalePrice;
-	}
-
-	public BigDecimal getEggSalePrice() {
-		return eggSalePrice;
-	}
-
-	public void setEggSalePrice(BigDecimal eggSalePrice) {
-		this.eggSalePrice = eggSalePrice;
-	}
-	
-	
-
-	
-	
 	
 }

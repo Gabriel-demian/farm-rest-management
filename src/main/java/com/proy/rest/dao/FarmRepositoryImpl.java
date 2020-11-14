@@ -25,7 +25,6 @@ public class FarmRepositoryImpl  implements FarmRepository {
 
 		List<Farm> farmList = theQuery.getResultList();
 		
-		
 		return farmList;
 	}
 
