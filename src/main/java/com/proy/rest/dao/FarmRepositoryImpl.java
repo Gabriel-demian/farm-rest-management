@@ -21,7 +21,7 @@ public class FarmRepositoryImpl  implements FarmRepository {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query<Farm> theQuery = currentSession.createQuery("from Farm order by lastName", Farm.class);
+		Query<Farm> theQuery = currentSession.createQuery("from farm order by lastName", Farm.class);
 
 		List<Farm> farmList = theQuery.getResultList();
 		
@@ -51,7 +51,7 @@ public class FarmRepositoryImpl  implements FarmRepository {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		Query theQuery = currentSession.createQuery("delete from Farm where id=:farmId");
+		Query theQuery = currentSession.createQuery("delete from farm where id=:farmId");
 		
 		theQuery.setParameter("farmId", theId);
 		
@@ -70,13 +70,13 @@ public class FarmRepositoryImpl  implements FarmRepository {
 
 			
 			theQuery = currentSession.createQuery(
-					"from Farm where lower(farmName) like :theName",
+					"from farm where lower(farmName) like :theName",
 					Farm.class);
 			theQuery.setParameter("theName", "%" + theSearchName.toLowerCase() + "%");
 
 		} else {
 			
-			theQuery = currentSession.createQuery("from Farm", Farm.class);
+			theQuery = currentSession.createQuery("from farm", Farm.class);
 		}
 
 		

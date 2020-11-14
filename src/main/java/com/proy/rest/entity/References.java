@@ -6,16 +6,16 @@ import javax.persistence.Column;
 
 public class References {
 	
-	@Column(name="egg_Expiration_Date")
+	@Column(name="egg_expiration_date")
 	private Integer eggExpirationDate;
 	
-	@Column(name="chicken_Expiration_Date")
+	@Column(name="chicken_expiration_date")
 	private Integer chickenExpirationDate;
 	
-	@Column(name="ch_Sale_Price")
+	@Column(name="ch_sale_price")
 	private BigDecimal chSalePrice;
 	
-	@Column(name="egg_Sale_Price")
+	@Column(name="egg_sale_price")
 	private BigDecimal eggSalePrice;
 	
 	

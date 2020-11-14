@@ -15,24 +15,24 @@ import javax.validation.constraints.NotNull;
 public class Farm {
 	
 	@Id
-	@Column(name="farm_Id")
+	@Column(name="farm_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer farmId;
 	
-	@Column(name="farm_Name")
+	@Column(name="farm_name")
 	@NotNull(message="Farm Name can't be null")
 	private String farmName;
 	
-	@Column(name="chicken_Bought")
+	@Column(name="chicken_bought")
 	private Integer chickenBought;
 	
-	@Column(name="chicken_Sold")
+	@Column(name="chicken_sold")
 	private Integer chickenSold;
 	
-	@Column(name="egg_Bought")
+	@Column(name="egg_bought")
 	private Integer eggBought;
 	
-	@Column(name="egg_Sold")
+	@Column(name="egg_sold")
 	private Integer eggSold;
 
 	@Column(name="income")
