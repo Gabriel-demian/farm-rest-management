@@ -10,8 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import com.proy.rest.entity.Farm;
 
+
 @Repository
 public class FarmRepositoryImpl  implements FarmRepository {
+
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -39,7 +41,7 @@ public class FarmRepositoryImpl  implements FarmRepository {
 	}
 
 	@Override
-	public void saveFarm(Farm theFarm) {
+	public void saveOrUpdateFarm(Farm theFarm) {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		
@@ -84,7 +86,6 @@ public class FarmRepositoryImpl  implements FarmRepository {
 		
 		return farms;
 	}
-	
 	
 
 }

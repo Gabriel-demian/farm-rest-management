@@ -10,10 +10,9 @@ public interface FarmRepository{
 	
 	public Farm getFarm(Integer farmId);
 	
-	public void saveFarm(Farm theFarm);
+	public void saveOrUpdateFarm(Farm theFarm);
 
 	public void deleteFarm(Integer theId);
 
 	public List<Farm> searchFarms(String theSearchName);
-
 }
