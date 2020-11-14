@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,8 +61,8 @@ public class FarmController {
 	public Farm updateFarm(@PathVariable Integer farmId, @RequestBody Farm updatedFarm) {
 		
 		Farm existingFarm = farms.get(farmId);
-		existingFarm.setFarm_name(updatedFarm.getFarm_name());
-		existingFarm.setChicken_bought(existingFarm.getChicken_bought());
+//		existingFarm.setFarm_name(updatedFarm.getFarm_name());
+//		existingFarm.setChicken_bought(existingFarm.getChicken_bought());
 		
 		farms.put(farmId, existingFarm);
 		

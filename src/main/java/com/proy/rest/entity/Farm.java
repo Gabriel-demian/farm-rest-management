@@ -2,7 +2,6 @@ package com.proy.rest.entity;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,83 +15,73 @@ public class Farm {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer farm_id;
+	private Integer farmId;
 	
 	
 	@NotNull(message="Farm Name can't be null")
-	private String farm_name;
+	private String farmName;
 	
-	@Column
-	private Integer chicken_bought;
-	@Column
-	private Integer chicken_sold;
-	@Column
-	private Integer egg_bought;
-	@Column
-	private Integer egg_sold;
+	private Integer chickenBought;
+	private Integer chickenSold;
+	private Integer eggBought;
+	private Integer eggSold;
 
-	@Column
 	private BigDecimal income;
-	@Column
 	private BigDecimal expenses;
 	
-	@Column
-	private BigDecimal ch_purchase_Price;
-	@Column
-	private BigDecimal ch_sale_Price;
-	@Column
-	private BigDecimal egg_purchase_Price;
-	@Column
-	private BigDecimal egg_sale_Price;
+	private BigDecimal chSalePrice;
+	private BigDecimal eggSalePrice;
 	
 	public Farm() {
 		
 	}
-	
-	public Integer getFarm_id() {
-		return farm_id;
-	}
-	public void setFarm_id(Integer farm_id) {
-		this.farm_id = farm_id;
-	}
-	public String getFarm_name() {
-		return farm_name;
-	}
-	public void setFarm_name(String farm_name) {
-		this.farm_name = farm_name;
+
+	public Integer getFarmId() {
+		return farmId;
 	}
 
-	public Integer getChicken_bought() {
-		return chicken_bought;
+	public void setFarmId(Integer farmId) {
+		this.farmId = farmId;
 	}
 
-	public void setChicken_bought(Integer chicken_bought) {
-		this.chicken_bought = chicken_bought;
+	public String getFarmName() {
+		return farmName;
 	}
 
-	public Integer getChicken_sold() {
-		return chicken_sold;
+	public void setFarmName(String farmName) {
+		this.farmName = farmName;
 	}
 
-	public void setChicken_sold(Integer chicken_sold) {
-		this.chicken_sold = chicken_sold;
+	public Integer getChickenBought() {
+		return chickenBought;
 	}
 
-	public Integer getEgg_bought() {
-		return egg_bought;
+	public void setChickenBought(Integer chickenBought) {
+		this.chickenBought = chickenBought;
 	}
 
-	public void setEgg_bought(Integer egg_bought) {
-		this.egg_bought = egg_bought;
+	public Integer getChickenSold() {
+		return chickenSold;
 	}
 
-	public Integer getEgg_sold() {
-		return egg_sold;
+	public void setChickenSold(Integer chickenSold) {
+		this.chickenSold = chickenSold;
 	}
 
-	public void setEgg_sold(Integer egg_sold) {
-		this.egg_sold = egg_sold;
+	public Integer getEggBought() {
+		return eggBought;
+	}
+
+	public void setEggBought(Integer eggBought) {
+		this.eggBought = eggBought;
+	}
+
+	public Integer getEggSold() {
+		return eggSold;
+	}
+
+	public void setEggSold(Integer eggSold) {
+		this.eggSold = eggSold;
 	}
 
 	public BigDecimal getIncome() {
@@ -111,37 +100,22 @@ public class Farm {
 		this.expenses = expenses;
 	}
 
-	public BigDecimal getCh_purchase_Price() {
-		return ch_purchase_Price;
+	public BigDecimal getChSalePrice() {
+		return chSalePrice;
 	}
 
-	public void setCh_purchase_Price(BigDecimal ch_purchase_Price) {
-		this.ch_purchase_Price = ch_purchase_Price;
+	public void setChSalePrice(BigDecimal chSalePrice) {
+		this.chSalePrice = chSalePrice;
 	}
 
-	public BigDecimal getCh_sale_Price() {
-		return ch_sale_Price;
+	public BigDecimal getEggSalePrice() {
+		return eggSalePrice;
 	}
 
-	public void setCh_sale_Price(BigDecimal ch_sale_Price) {
-		this.ch_sale_Price = ch_sale_Price;
+	public void setEggSalePrice(BigDecimal eggSalePrice) {
+		this.eggSalePrice = eggSalePrice;
 	}
-
-	public BigDecimal getEgg_purchase_Price() {
-		return egg_purchase_Price;
-	}
-
-	public void setEgg_purchase_Price(BigDecimal egg_purchase_Price) {
-		this.egg_purchase_Price = egg_purchase_Price;
-	}
-
-	public BigDecimal getEgg_sale_Price() {
-		return egg_sale_Price;
-	}
-
-	public void setEgg_sale_Price(BigDecimal egg_sale_Price) {
-		this.egg_sale_Price = egg_sale_Price;
-	}
+	
 	
 
 	
