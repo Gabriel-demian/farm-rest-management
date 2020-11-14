@@ -41,20 +41,49 @@ public class FarmRepositoryImpl  implements FarmRepository {
 
 	@Override
 	public void saveFarm(Farm theFarm) {
-		// TODO Auto-generated method stub
 		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		currentSession.saveOrUpdate(theFarm);
 	}
 
 	@Override
 	public void deleteFarm(Integer theId) {
-		// TODO Auto-generated method stub
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query theQuery = currentSession.createQuery("delete from Farm where id=:farmId");
+		
+		theQuery.setParameter("farmId", theId);
+		
+		theQuery.executeUpdate();
 		
 	}
 
 	@Override
 	public List<Farm> searchFarms(String theSearchName) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		Query theQuery = null;
+		
+		if (theSearchName != null && theSearchName.trim().length() > 0) {
+
+			
+			theQuery = currentSession.createQuery(
+					"from Farm where lower(farmName) like :theName",
+					Farm.class);
+			theQuery.setParameter("theName", "%" + theSearchName.toLowerCase() + "%");
+
+		} else {
+			
+			theQuery = currentSession.createQuery("from Farm", Farm.class);
+		}
+
+		
+		List<Farm> farms = theQuery.getResultList();
+		
+		return farms;
 	}
 	
 	
