@@ -1,52 +1,37 @@
 package com.proy.rest.entity;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "reference")
-public class Reference {
+public class Reference {	
 	
-	@Column(name="egg_expiration_date")
-	private Integer eggExpirationDate;
+	@Id
+	@Column(name="key")
+	private String key;
 	
-	@Column(name="chicken_expiration_date")
-	private Integer chickenExpirationDate;
+	@Column(name="value")
+	private String value;
 	
-	@Column(name="ch_sale_price")
-	private BigDecimal chSalePrice;
-	
-	@Column(name="egg_sale_price")
-	private BigDecimal eggSalePrice;
-	
-	
-	public Integer getEggExpirationDate() {
-		return eggExpirationDate;
+	public String getValue() {
+		return value;
 	}
-	public void setEggExpirationDate(Integer eggExpirationDate) {
-		this.eggExpirationDate = eggExpirationDate;
+
+	public void setValue(String value) {
+		this.value = value;
 	}
-	public Integer getChickenExpirationDate() {
-		return chickenExpirationDate;
+
+	public String getKey() {
+		return key;
 	}
-	public void setChickenExpirationDate(Integer chickenExpirationDate) {
-		this.chickenExpirationDate = chickenExpirationDate;
+
+	public void setKey(String key) {
+		this.key = key;
 	}
-	public BigDecimal getChSalePrice() {
-		return chSalePrice;
-	}
-	public void setChSalePrice(BigDecimal chSalePrice) {
-		this.chSalePrice = chSalePrice;
-	}
-	public BigDecimal getEggSalePrice() {
-		return eggSalePrice;
-	}
-	public void setEggSalePrice(BigDecimal eggSalePrice) {
-		this.eggSalePrice = eggSalePrice;
-	}
+
 	
 	
 }

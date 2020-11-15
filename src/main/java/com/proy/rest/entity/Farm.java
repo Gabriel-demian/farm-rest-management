@@ -10,13 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "farm")
 public class Farm {
 	
 	@Id
 	@Column(name="farm_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
 	private Integer farmId;
 	
 	@Column(name="farm_name")

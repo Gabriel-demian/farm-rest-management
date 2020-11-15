@@ -1,20 +1,19 @@
 package com.proy.rest.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.proy.rest.entity.Farm;
 
 
 public interface FarmService {
 	
-	public List<Farm> getFarms();
+	public List<Farm> findAll();
 	
-	public Farm getFarm(Integer farmId);
+	public Optional<Farm> findById(Integer farmId);
 	
-	public void saveOrUpdateFarm(Farm theFarm);
+	public Farm save(Farm theFarm);
 
-	public void deleteFarm(Integer theId);
-
-	public List<Farm> searchFarms(String theSearchName);
+	public void deleteById(Integer theId);
 	
 }

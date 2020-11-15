@@ -2,17 +2,14 @@ package com.proy.rest.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import com.proy.rest.entity.Farm;
 
-public interface FarmRepository{
+@Repository
+public interface FarmRepository extends JpaRepository<Farm, Integer>{
 	
-	public List<Farm> getFarms();
+	List<Farm> findByFarmName(String farmName);
 	
-	public Farm getFarm(Integer farmId);
-	
-	public void saveOrUpdateFarm(Farm theFarm);
-
-	public void deleteFarm(Integer theId);
-
-	public List<Farm> searchFarms(String theSearchName);
 }

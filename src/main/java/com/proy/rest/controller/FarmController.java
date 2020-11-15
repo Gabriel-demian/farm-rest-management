@@ -1,5 +1,7 @@
 package com.proy.rest.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +38,15 @@ public class FarmController {
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public Iterable<Farm> getAllFarms(){
-		return farmService.getFarms();
+		return farmService.findAll();
 	}
 	
 	
 	@GetMapping(path = "/{farmId}")
 	@ResponseStatus(HttpStatus.FOUND)
-	public Farm getFarm(@PathVariable Integer farmId) {
+	public Optional<Farm> getFarm(@PathVariable Integer farmId) {
 
-		return farmService.getFarm(farmId);
+		return farmService.findById(farmId);
 		
 	}
 	
@@ -52,9 +54,9 @@ public class FarmController {
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, 
 				produces = {MediaType.APPLICATION_JSON_VALUE} )
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createFarm(@RequestBody @Valid Farm dataFarm) {
+	public Farm createFarm(@RequestBody @Valid Farm dataFarm) {
 		
-		farmService.saveOrUpdateFarm(dataFarm);
+		return farmService.save(dataFarm);
 		
 	}
 	
@@ -63,9 +65,9 @@ public class FarmController {
 			consumes = {MediaType.APPLICATION_JSON_VALUE}, 
 			produces = {MediaType.APPLICATION_JSON_VALUE} )
 	@ResponseStatus(HttpStatus.OK)
-	public void updateFarm(@PathVariable Integer farmId, @RequestBody Farm updatedFarm) {
+	public Farm updateFarm(@PathVariable Integer farmId, @RequestBody Farm updatedFarm) {
 		
-		farmService.saveOrUpdateFarm(updatedFarm);
+		return farmService.save(updatedFarm);
 		
 	}
 	
@@ -73,7 +75,7 @@ public class FarmController {
 	@DeleteMapping(path = "/{farmId}")
 	public void deleteFarm(@PathVariable Integer farmId) {
 		
-			farmService.deleteFarm(farmId);
+			farmService.deleteById(farmId);
 			
 	}
 	

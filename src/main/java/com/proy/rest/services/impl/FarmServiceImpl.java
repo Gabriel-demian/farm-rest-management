@@ -1,6 +1,7 @@
 package com.proy.rest.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,35 +19,29 @@ public class FarmServiceImpl implements FarmService{
 
 	@Override
 	@Transactional
-	public List<Farm> getFarms() {
-		return farmRepository.getFarms();
+	public List<Farm> findAll() {
+		return farmRepository.findAll();
 	}
 
 	@Override
 	@Transactional
-	public Farm getFarm(Integer farmId) {
-		return farmRepository.getFarm(farmId);
+	public Optional<Farm> findById(Integer farmId) {
+		return farmRepository.findById(farmId);
 	}
 
 	@Override
 	@Transactional
-	public void saveOrUpdateFarm(Farm theFarm) {
-		farmRepository.saveOrUpdateFarm(theFarm);
+	public Farm save(Farm theFarm) {
+		
+		return farmRepository.save(theFarm);
 		
 	}
 
 	@Override
 	@Transactional
-	public void deleteFarm(Integer theId) {
-		farmRepository.deleteFarm(theId);
+	public void deleteById(Integer theId) {
+		farmRepository.deleteById(theId);
 		
 	}
-
-	@Override
-	@Transactional
-	public List<Farm> searchFarms(String theSearchName) {
-		return farmRepository.searchFarms(theSearchName);
-	}
-
 
 }
