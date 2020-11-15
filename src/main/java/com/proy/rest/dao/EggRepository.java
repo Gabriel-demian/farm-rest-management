@@ -2,18 +2,12 @@ package com.proy.rest.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.proy.rest.entity.Egg;
 
-public interface EggRepository{
+public interface EggRepository extends JpaRepository<Egg, Integer>{
 	
-	public List<Egg> getEggs();
-	
-	public List<Egg> getEggsByFarmId(Integer farmId);
-	
-	public Egg getEgg(Integer eggId);
-	
-	public void saveOrUpdateEgg(Egg theEgg);
-
-	public void deleteEgg(Integer theId);
+	List<Egg> findByFarmId(Integer farmId);
 
 }

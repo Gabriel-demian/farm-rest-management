@@ -1,6 +1,7 @@
 package com.proy.rest.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.proy.rest.entity.Chicken;
 
@@ -10,7 +11,7 @@ public interface ChickenService {
 	
 	public List<Chicken> getChickensByFarmId(Integer farmId);
 	
-	public Chicken getChicken(Integer chickenId);
+	public Optional<Chicken> getChicken(Integer chickenId);
 	
 	public void saveOrUpdateChicken(Chicken theChiken);
 

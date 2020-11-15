@@ -1,6 +1,7 @@
 package com.proy.rest.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,32 +17,46 @@ public class EggServiceImpl implements EggService {
 
 	@Override
 	@Transactional
-	public List<Egg> getEggs() {
-		return eggRepository.getEggs();
+	public List<Egg> findAll() {
+		
+		return eggRepository.findAll();
+		
 	}
 
+	
 	@Override
 	@Transactional
-	public List<Egg> getEggsByFarmId(Integer farmId) {
-		return eggRepository.getEggsByFarmId(farmId);
+	public List<Egg> findByFarmId(Integer farmId) {
+		
+		return eggRepository.findByFarmId(farmId);
+		
 	}
 
+	
 	@Override
 	@Transactional
-	public Egg getEgg(Integer eggId) {
-		return eggRepository.getEgg(eggId);
+	public Optional<Egg> findById(Integer eggId) {
+		
+		return eggRepository.findById(eggId);
+		
 	}
 
+	
 	@Override
 	@Transactional
-	public void saveOrUpdateEgg(Egg theEgg) {
-		eggRepository.saveOrUpdateEgg(theEgg);
+	public Egg saveOrUpdateEgg(Egg theEgg) {
+		
+		return eggRepository.save(theEgg);
+		
 	}
 
+	
 	@Override
 	@Transactional
-	public void deleteEgg(Integer theId) {
-		eggRepository.deleteEgg(theId);
+	public void deleteById(Integer theId) {
+		
+		eggRepository.deleteById(theId);
+		
 	}
 
 }

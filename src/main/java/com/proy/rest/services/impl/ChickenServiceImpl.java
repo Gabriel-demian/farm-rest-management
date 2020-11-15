@@ -1,6 +1,7 @@
 package com.proy.rest.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,31 +18,45 @@ public class ChickenServiceImpl implements ChickenService {
 	@Override
 	@Transactional
 	public List<Chicken> getChickens() {
-		return chickenRepository.getChickens();
+		
+		return chickenRepository.findAll();
+		
 	}
 
+	
 	@Override
 	@Transactional
 	public List<Chicken> getChickensByFarmId(Integer farmId) {
-		return chickenRepository.getChickensByFarmId(farmId);
+		
+		return chickenRepository.findByFarmId(farmId);
+		
 	}
+	
 
 	@Override
 	@Transactional
-	public Chicken getChicken(Integer chickenId) {
-		return chickenRepository.getChicken(chickenId);
+	public Optional<Chicken> getChicken(Integer chickenId) {
+		
+		return chickenRepository.findById(chickenId);
+		
 	}
 
+	
 	@Override
 	@Transactional
 	public void saveOrUpdateChicken(Chicken theChiken) {
-		chickenRepository.saveOrUpdateChicken(theChiken);
+		
+		chickenRepository.save(theChiken);
+		
 	}
 
+	
 	@Override
 	@Transactional
 	public void deleteChicken(Integer theId) {
-		chickenRepository.deleteChicken(theId);
+		
+		chickenRepository.deleteById(theId);
+	
 	}
 
 }

@@ -1,19 +1,20 @@
 package com.proy.rest.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.proy.rest.entity.Egg;
 
 public interface EggService {
 	
-	public List<Egg> getEggs();
+	public List<Egg> findAll();
 	
-	public List<Egg> getEggsByFarmId(Integer farmId);
+	public Optional<Egg> findById(Integer eggId);
 	
-	public Egg getEgg(Integer eggId);
+	public List<Egg> findByFarmId(Integer farmId);
 	
-	public void saveOrUpdateEgg(Egg theEgg);
+	public Egg saveOrUpdateEgg(Egg theEgg);
 
-	public void deleteEgg(Integer theId);
+	public void deleteById(Integer theId);
 
 }
