@@ -104,3 +104,13 @@ y eliminar el ID del respectivo huevo.
 ```
  
 </details>
+
+# Diagrama de la aplicación
+<details>
+ <summary>Click to expand!</summary>
+ 
+![lógica](https://user-images.githubusercontent.com/57782295/99194573-f83ba680-275e-11eb-9434-7d65ec95d652.jpg)
+
+![tenor](https://user-images.githubusercontent.com/57782295/99194585-0c7fa380-275f-11eb-8d6e-6d40d37d7bb6.gif)
+
+ </details>
