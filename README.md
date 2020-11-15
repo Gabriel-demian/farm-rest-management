@@ -12,7 +12,7 @@
 
    CREATE TABLE `farm-management`.`farm` (
      `farm_id` INT NOT NULL AUTO_INCREMENT,
-     `farm_name` INT NOT NULL,
+     `farm_name` VARCHAR(45) NOT NULL,
      `chicken_bought` INT NULL,
      `chicken_sold` INT NULL,
      `egg_bought` INT NULL,
@@ -38,8 +38,6 @@
      PRIMARY KEY (`egg_id`));
 
    CREATE TABLE `farm-management`.`reference` (
-     `egg_expiration_date` INT NOT NULL,
-     `chicken_expiration_date` INT NOT NULL,
-     `ch_sale_price` DOUBLE NOT NULL,
-     `egg_sale_price` DOUBLE NOT NULL);
+     `key` VARCHAR(45) NOT NULL,
+     `value` VARCHAR(45) NULL);
 </details>
