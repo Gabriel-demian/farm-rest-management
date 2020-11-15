@@ -2,6 +2,16 @@
  
 ![0 (2)](https://user-images.githubusercontent.com/57782295/99152996-47f96f80-2684-11eb-9b39-844c60a01033.jpg)
 
+# TODO
+- [x] Finalizar el Rest controller de las Granjas y sus respectivos services y repo. 
+- [ ] Finalizar el Rest controller de las Gallinas y sus respectivos services y repo.
+- [ ] Finalizar el Rest controller de los Huevos y sus respectivos services y repo.
+- [ ] Generar una tabla clave valor de tipo diccionario, en ella tendrá los precios de venta y "tiempo de vida de un huevo y gallina"
+- [ ] Generar una tabla clave valor de tipo diccionario donde tendrá los id de las granjas y de los usuarios asignados
+- [ ] Generar dos tablas, una de transacciones y la otra con los detalles de las transacciones
+- [ ] Seguir actualizando la lista
+- [ ] Agregar algo interesante acá
+
 # Creacion de la base de datos y sus respectivas tablas
 <details>
   <summary>Click to expand!</summary>
@@ -61,3 +71,36 @@
     "expenses": 100
 }
 ```
+# Algo de lógica de negocio
+<details>
+  <summary>Click to expand!</summary>
+ 
+```
+ # Logica Compra/venta
+ Ej: Gallinas
+ La granja puede vender una gallina, la cual se debe seleccionar de una lista de gallinas disponibles. 
+ Se deberá incremetar el valor de "incomes" en la granja y borrar de la tabla de gallinas los ID 
+ de gallinas seleccionadas. 
+ En caso de comprar se agregará el valor de compra a "expenses" y agregar las X gallinas con sus respectivos IDs
+```
+ 
+```
+# Lógica Crecimiento
+La gallina una vez pasados X días se considerará como fallecida y se eliminará de la tabla de gallinas. 
+Se agregará el valor de venta de cada gallina a "expenses" para impactar el dinero perdido por la "no venta"
+
+Los huevos una vez transcurridos los 21 días sin ser vendidos se deberá agregar a la tabla de gallinas 
+y eliminar el ID del respectivo huevo.
+```
+
+```
+# Usuarios
+ Cada granja tendrá asignado un máximo de 2 usuarios. al realizar una transacción (compra o venta) desde la granja 
+ el usuario que la realizó deberá quedar registrado en la tabla de Transaccion_details.
+
+ Se tendrá la tabla farmUsers donde quedará registrado que farmId tiene asignado cada usuario.
+ Los usuarios serán validados y almacenados en firebase.
+ (falta crear definir la validación del backend contra firebase)
+```
+ 
+</details>
