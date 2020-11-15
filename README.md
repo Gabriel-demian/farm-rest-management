@@ -41,3 +41,20 @@
      `key` VARCHAR(45) NOT NULL,
      `value` VARCHAR(45) NULL);
 </details>
+
+# Datos de una granja JSON
+
+- Datos ejemplo para un update completo. URL: http://localhost:8080/api/farms/1 Method:PUT
+  - En caso de crear una granja nueva no incluir el farmId en el cuerpo ni en la url http://localhost:8080/api/farms Method: POST
+```
+{
+    "farmId": 1,
+    "farmName": "Test  Farm!",
+    "chickenBought": 80,
+    "chickenSold": 10,
+    "eggBought": 0,
+    "eggSold": 24,
+    "income": 350,
+    "expenses": 100
+}
+```
