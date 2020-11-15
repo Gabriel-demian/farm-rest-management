@@ -5,7 +5,8 @@
 # Creacion de la base de datos y sus respectivas tablas
 <details>
   <summary>Click to expand!</summary>
-  
+ 
+ ```
    CREATE SCHEMA `farm-management` ;
 
    SET GLOBAL time_zone = '-3:00';
@@ -40,6 +41,8 @@
    CREATE TABLE `farm-management`.`reference` (
      `key` VARCHAR(45) NOT NULL,
      `value` VARCHAR(45) NULL);
+  ```
+     
 </details>
 
 # Datos de una granja JSON
