@@ -37,7 +37,7 @@ public class EggController {
 	}
 	
 	
-	@GetMapping(path = "/{farmId}")
+	@GetMapping(path = "/farm/{farmId}")
 	@ResponseStatus(HttpStatus.OK)
 	public Iterable<Egg> getEggsByFarmId(@PathVariable Integer farmId){
 		
