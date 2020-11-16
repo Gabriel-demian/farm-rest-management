@@ -1,6 +1,6 @@
 package com.proy.rest.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,10 +25,10 @@ public class Egg {
 	private Integer farmId;
 	
 	@Column(name="birth_date")
-	private Date birthDate;
+	private LocalDateTime birthDate;
 	
 	@Column(name="expiration_date")
-	private Date expirationDate;
+	private LocalDateTime expirationDate;
 
 	public Integer getEggId() {
 		return eggId;
@@ -46,21 +46,21 @@ public class Egg {
 		this.farmId = farmId;
 	}
 
-	public Date getBirthDate() {
+	public LocalDateTime getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDateTime birthDate) {
 		this.birthDate = birthDate;
 	}
 
-	public Date getExpirationDate() {
+	public LocalDateTime getExpirationDate() {
 		return expirationDate;
 	}
 
-	public void setExpirationDate(Date expirationDate) {
+	public void setExpirationDate(LocalDateTime expirationDate) {
 		this.expirationDate = expirationDate;
 	}
-	
+
 	
 }
