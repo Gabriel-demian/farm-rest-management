@@ -19,7 +19,7 @@ public class ChickenServiceImpl implements ChickenService {
 
 	@Override
 	@Transactional
-	public List<Chicken> getChickens() {
+	public List<Chicken> findAll() {
 		
 		return chickenRepository.findAll();
 		
@@ -28,7 +28,7 @@ public class ChickenServiceImpl implements ChickenService {
 	
 	@Override
 	@Transactional
-	public List<Chicken> getChickensByFarmId(Integer farmId) {
+	public List<Chicken> findByFarmId(Integer farmId) {
 		
 		return chickenRepository.findByFarmId(farmId);
 		
@@ -37,7 +37,7 @@ public class ChickenServiceImpl implements ChickenService {
 
 	@Override
 	@Transactional
-	public Optional<Chicken> getChicken(Integer chickenId) {
+	public Optional<Chicken> findById(Integer chickenId) {
 		
 		return chickenRepository.findById(chickenId);
 		
@@ -46,16 +46,16 @@ public class ChickenServiceImpl implements ChickenService {
 	
 	@Override
 	@Transactional
-	public void saveOrUpdateChicken(Chicken theChiken) {
+	public Chicken saveOrUpdateChicken(Chicken theChiken) {
 		
-		chickenRepository.save(theChiken);
+		return chickenRepository.save(theChiken);
 		
 	}
 
 	
 	@Override
 	@Transactional
-	public void deleteChicken(Integer theId) {
+	public void deleteById(Integer theId) {
 		
 		chickenRepository.deleteById(theId);
 	

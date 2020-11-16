@@ -7,13 +7,13 @@ import com.proy.rest.entity.Chicken;
 
 public interface ChickenService {
 
-	public List<Chicken> getChickens();
+	public List<Chicken> findAll();
 	
-	public List<Chicken> getChickensByFarmId(Integer farmId);
+	public List<Chicken> findByFarmId(Integer farmId);
 	
-	public Optional<Chicken> getChicken(Integer chickenId);
+	public Optional<Chicken> findById(Integer chickenId);
 	
-	public void saveOrUpdateChicken(Chicken theChiken);
+	public Chicken saveOrUpdateChicken(Chicken theChiken);
 
-	public void deleteChicken(Integer theId);
+	public void deleteById(Integer theId);
 }

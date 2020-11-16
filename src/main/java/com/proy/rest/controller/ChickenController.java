@@ -17,40 +17,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proy.rest.entity.Egg;
-import com.proy.rest.services.EggService;
+import com.proy.rest.entity.Chicken;
+import com.proy.rest.services.ChickenService;
 
 @RestController
-@RequestMapping("/api/eggs")
-public class EggController {
+@RequestMapping("/api/chickens")
+public class ChickenController {
 	
 	@Autowired
-	EggService eggService;
+	ChickenService chickenService;
 	
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public Iterable<Egg> getAllEggs(){
+	public Iterable<Chicken> getAllChickens(){
 		
-		return eggService.findAll();
+		return chickenService.findAll();
 		
 	}
 	
 	
 	@GetMapping(path = "/farm/{farmId}")
 	@ResponseStatus(HttpStatus.OK)
-	public Iterable<Egg> getEggsByFarmId(@PathVariable Integer farmId){
+	public Iterable<Chicken> getChickensByFarmId(@PathVariable Integer farmId){
 		
-		return eggService.findByFarmId(farmId);
+		return chickenService.findByFarmId(farmId);
 		
 	}
 	
 	
-	@GetMapping(path = "/{eggId}")
+	@GetMapping(path = "/{chickenId}")
 	@ResponseStatus(HttpStatus.FOUND)
-	public Optional<Egg> getEgg(@PathVariable Integer eggId) {
+	public Optional<Chicken> getChicken(@PathVariable Integer chickenId) {
 
-		return eggService.findById(eggId);
+		return chickenService.findById(chickenId);
 		
 	}
 	
@@ -58,28 +58,28 @@ public class EggController {
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, 
 				produces = {MediaType.APPLICATION_JSON_VALUE} )
 	@ResponseStatus(HttpStatus.CREATED)
-	public Egg createEgg(@RequestBody @Valid Egg dataEgg) {
+	public Chicken createChicken(@RequestBody @Valid Chicken dataChicken) {
 		
-		return eggService.saveOrUpdateEgg(dataEgg);
+		return chickenService.saveOrUpdateChicken(dataChicken);
 		
 	}
 	
 	
-	@PutMapping(path = "/{eggId}", 
+	@PutMapping(path = "/{chickenId}", 
 			consumes = {MediaType.APPLICATION_JSON_VALUE}, 
 			produces = {MediaType.APPLICATION_JSON_VALUE} )
 	@ResponseStatus(HttpStatus.OK)
-	public Egg updateEgg(@PathVariable Integer eggId, @RequestBody Egg updatedEgg) {
+	public Chicken updateChicken(@PathVariable Integer chickenId, @RequestBody Chicken updatedChicken) {
 		
-		return eggService.saveOrUpdateEgg(updatedEgg);
+		return chickenService.saveOrUpdateChicken(updatedChicken);
 		
 	}
 	
 	
-	@DeleteMapping(path = "/{eggId}")
-	public void deleteEgg(@PathVariable Integer eggId) {
+	@DeleteMapping(path = "/{chickenId}")
+	public void deleteChicken(@PathVariable Integer chickenId) {
 		
-			eggService.deleteById(eggId);
+			chickenService.deleteById(chickenId);
 			
 	}
 
