@@ -71,6 +71,13 @@
     "expenses": 100
 }
 ```
+
+# Datos usados en Postman (urls, ejemplos de métodos que se pueden usar con la api)
+
+```
+https://documenter.getpostman.com/view/8263715/TVep9TrY
+```
+
 # Algo de lógica de negocio
 <details>
   <summary>Click to expand!</summary>
