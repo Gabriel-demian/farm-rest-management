@@ -10,6 +10,7 @@
 - [x] Verificar que todos los métodos de los controllers funcionan correctamente. 
 - [x] Se agrega Swagger para documentación ( http://localhost:8080/swagger/dist/index.html#/ )
 - [ ] Generar las clases DTO
+- [ ] Generar un servicio para la lógica de negocio para no sobrecargar el Controller.
 - [ ] Generar una tabla clave valor de tipo diccionario donde tendrá los id de las granjas y de los usuarios asignados
 - [ ] Generar dos tablas, una de transacciones y la otra con los detalles de las transacciones
 - [ ] Seguir actualizando la lista
