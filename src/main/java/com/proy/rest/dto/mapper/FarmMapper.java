@@ -33,6 +33,12 @@ public class FarmMapper implements Mapper<Farm, FarmDto> {
 	public Farm fillEntity(Farm entity, FarmDto dto) {
 		
 		entity.setFarmName(dto.getFarmName());
+		entity.setChickenBought(dto.getChickenBought());
+		entity.setChickenSold(dto.getChickenSold());
+		entity.setEggBought(dto.getEggBought());
+		entity.setEggSold(dto.getEggSold());
+		entity.setIncome(dto.getIncome());
+		entity.setExpenses(dto.getExpenses());
 		
 		return entity;
 	}
