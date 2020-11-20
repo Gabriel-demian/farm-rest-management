@@ -30,7 +30,7 @@ public class ChickenServiceImpl implements ChickenService {
 	@Transactional
 	public List<Chicken> findByFarmId(Integer farmId) {
 		
-		return chickenRepository.findByFarmId(farmId);
+		return chickenRepository.findByFarm(farmId);
 		
 	}
 	
