@@ -32,6 +32,8 @@ public class ChickenController {
 	@ResponseStatus(HttpStatus.OK)
 	public Iterable<Chicken> getAllChickens(){
 		
+		
+		
 		return chickenService.findAll();
 		
 	}

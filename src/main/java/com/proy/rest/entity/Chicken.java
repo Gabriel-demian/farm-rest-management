@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -21,8 +23,9 @@ public class Chicken {
     @GenericGenerator(name = "native", strategy = "native")
 	private Integer chickenId;
 	
-	@Column(name="farm_id")
-	private Integer farmId;
+	@ManyToOne()
+	@JoinColumn(name= "farm_id")
+	private Farm farm;
 	
 	@Column(name="birth_date")
 	private LocalDateTime birthDate;
@@ -39,12 +42,12 @@ public class Chicken {
 		this.chickenId = chickenId;
 	}
 
-	public Integer getFarmId() {
-		return farmId;
+	public Farm getFarm() {
+		return farm;
 	}
 
-	public void setFarmId(Integer farmId) {
-		this.farmId = farmId;
+	public void setFarm(Farm farm) {
+		this.farm = farm;
 	}
 
 	public LocalDateTime getBirthDate() {

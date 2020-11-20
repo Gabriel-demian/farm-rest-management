@@ -1,12 +1,14 @@
 package com.proy.rest.entity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -25,6 +27,9 @@ public class Farm {
 	@Column(name="farm_name")
 	@NotNull(message="Farm Name can't be null")
 	private String farmName;
+	
+	@OneToMany(mappedBy= "farm")
+	private List<Chicken> chickens;
 	
 	@Column(name="chicken_bought")
 	private Integer chickenBought;
@@ -47,6 +52,14 @@ public class Farm {
 	
 	public Farm() {
 		
+	}
+	
+	public List<Chicken> getChickens() {
+		return chickens;
+	}
+
+	public void setChickens(List<Chicken> chickens) {
+		this.chickens = chickens;
 	}
 
 	public Integer getFarmId() {
