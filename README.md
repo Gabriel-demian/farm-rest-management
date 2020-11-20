@@ -7,6 +7,8 @@
 - [x] Finalizar el Rest controller de las Gallinas y sus respectivos services y repo.
 - [x] Finalizar el Rest controller de los Huevos y sus respectivos services y repo.
 - [x] Generar una tabla clave valor de tipo diccionario, (Reference) en ella tendrá los precios de venta y "tiempo de vida de un huevo y gallina"
+- [x] Verificar que todos los métodos de los controllers funcionan correctamente. 
+- [ ] Generar las clases DTO
 - [ ] Generar una tabla clave valor de tipo diccionario donde tendrá los id de las granjas y de los usuarios asignados
 - [ ] Generar dos tablas, una de transacciones y la otra con los detalles de las transacciones
 - [ ] Seguir actualizando la lista
