@@ -31,6 +31,9 @@ public class Farm {
 	@OneToMany(mappedBy= "farm")
 	private List<Chicken> chickens;
 	
+	@OneToMany(mappedBy= "farm")
+	private List<Egg> Eggs;
+	
 	@Column(name="chicken_bought")
 	private Integer chickenBought;
 	
@@ -54,6 +57,14 @@ public class Farm {
 		
 	}
 	
+	public List<Egg> getEggs() {
+		return Eggs;
+	}
+
+	public void setEggs(List<Egg> eggs) {
+		Eggs = eggs;
+	}
+
 	public List<Chicken> getChickens() {
 		return chickens;
 	}

@@ -1,38 +1,20 @@
-package com.proy.rest.entity;
+package com.proy.rest.dto;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.proy.rest.entity.Farm;
 
-import org.hibernate.annotations.GenericGenerator;
-
-@Entity
-@Table(name = "egg")
-public class Egg {
+public class EggDto {
 	
-	@Id
-	@Column(name="egg_id")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
 	private Integer eggId;
 	
-	@ManyToOne()
-	@JoinColumn(name= "farm_id")
 	private Farm farm;
 	
-	@Column(name="birth_date")
 	private LocalDateTime birthDate;
 	
-	@Column(name="expiration_date")
 	private LocalDateTime expirationDate;
 
+	
 	public Integer getEggId() {
 		return eggId;
 	}

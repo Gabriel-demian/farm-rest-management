@@ -30,7 +30,7 @@ public class EggServiceImpl implements EggService {
 	@Transactional
 	public List<Egg> findByFarmId(Integer farmId) {
 		
-		return eggRepository.findByFarmId(farmId);
+		return eggRepository.findByFarm(farmId);
 		
 	}
 
