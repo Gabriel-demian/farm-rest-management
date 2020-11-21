@@ -68,7 +68,7 @@ public class FarmController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public FarmDto createFarm(@RequestBody @Valid FarmDto dataFarm) {
 		
-		return farmMapper.getDto(farmService.save(farmMapper.fillEntity(new Farm() , dataFarm)));
+		return farmMapper.getDto(farmService.saveOrUpdateFarm(farmMapper.fillEntity(new Farm() , dataFarm)));
 		
 	}
 	
@@ -82,7 +82,7 @@ public class FarmController {
 		
 		if(farm.isPresent()) {
 			
-			return ResponseEntity.ok(farmMapper.getDto(farmService.save(farmMapper.fillEntity(farm.get(), updatedFarm))));
+			return ResponseEntity.ok(farmMapper.getDto(farmService.saveOrUpdateFarm(farmMapper.fillEntity(farm.get(), updatedFarm))));
 			
 		}
 		

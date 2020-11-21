@@ -28,7 +28,6 @@ public class ChickenMapper implements Mapper<Chicken, ChickenDto> {
 	@Override
 	public Chicken fillEntity(Chicken entity, ChickenDto dto) {
 		
-		entity.setChickenId(dto.getChickenId());
 		entity.setFarm(dto.getFarm());
 		entity.setBirthDate(dto.getBirthDate());
 		entity.setExpirationDate(dto.getExpirationDate());

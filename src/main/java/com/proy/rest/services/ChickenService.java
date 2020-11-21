@@ -9,7 +9,7 @@ public interface ChickenService {
 
 	public List<Chicken> findAll();
 	
-	public List<Chicken> findByFarmId(Integer farmId);
+	public List<Chicken> findByFarm(Integer farmId);
 	
 	public Optional<Chicken> findById(Integer chickenId);
 	

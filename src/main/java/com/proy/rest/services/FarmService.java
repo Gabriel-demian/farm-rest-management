@@ -12,7 +12,7 @@ public interface FarmService {
 	
 	public Optional<Farm> findById(Integer farmId);
 	
-	public Farm save(Farm theFarm);
+	public Farm saveOrUpdateFarm(Farm theFarm);
 
 	public void deleteById(Integer theId);
 	

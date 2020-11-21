@@ -28,7 +28,6 @@ public class EggMapper implements Mapper<Egg, EggDto> {
 	@Override
 	public Egg fillEntity(Egg entity, EggDto dto) {
 		
-		entity.setEggId(dto.getEggId());
 		entity.setFarm(dto.getFarm());
 		entity.setBirthDate(dto.getBirthDate());
 		entity.setExpirationDate(dto.getExpirationDate());

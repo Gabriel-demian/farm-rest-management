@@ -32,7 +32,7 @@ public class FarmServiceImpl implements FarmService{
 
 	@Override
 	@Transactional
-	public Farm save(Farm theFarm) {
+	public Farm saveOrUpdateFarm(Farm theFarm) {
 		
 		return farmRepository.save(theFarm);
 		

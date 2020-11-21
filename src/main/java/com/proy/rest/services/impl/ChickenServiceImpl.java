@@ -28,7 +28,7 @@ public class ChickenServiceImpl implements ChickenService {
 	
 	@Override
 	@Transactional
-	public List<Chicken> findByFarmId(Integer farmId) {
+	public List<Chicken> findByFarm(Integer farmId) {
 		
 		return chickenRepository.findByFarm(farmId);
 		
