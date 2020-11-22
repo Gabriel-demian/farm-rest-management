@@ -2,38 +2,38 @@ package com.proy.rest.dto;
 
 import java.time.LocalDateTime;
 
-import com.proy.rest.entity.Farm;
-
 public class ChickenDto {
 	
 
-	private Integer chickenId;
+	private Integer id;
 	
-	private Farm farm;
+	private FarmDto farm;
 	
 	private LocalDateTime birthDate;
 	
 	private LocalDateTime expirationDate;
 	
 	
-
 	public ChickenDto() {
 		
 	}
 
-	public Integer getChickenId() {
-		return chickenId;
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public void setChickenId(Integer chickenId) {
-		this.chickenId = chickenId;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Farm getFarm() {
+
+	public FarmDto getFarm() {
 		return farm;
 	}
 
-	public void setFarm(Farm farm) {
+	public void setFarm(FarmDto farm) {
 		this.farm = farm;
 	}
 

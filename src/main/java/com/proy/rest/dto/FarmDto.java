@@ -1,11 +1,12 @@
 package com.proy.rest.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 public class FarmDto {
 	
-	private Integer farmId;
+	private Integer id;
 	
 	private String farmName;
 	
@@ -21,17 +22,21 @@ public class FarmDto {
 	
 	private BigDecimal expenses;
 	
+	private List<EggDto> eggs;
+	
+	private List<ChickenDto> chickens;
+	
 	
 	public FarmDto() {
 		
 	}
 
-	public Integer getFarmId() {
-		return farmId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setFarmId(Integer farmId) {
-		this.farmId = farmId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFarmName() {
@@ -89,5 +94,23 @@ public class FarmDto {
 	public void setExpenses(BigDecimal expenses) {
 		this.expenses = expenses;
 	}
+
+	public List<EggDto> getEggs() {
+		return eggs;
+	}
+
+	public void setEggs(List<EggDto> eggs) {
+		this.eggs = eggs;
+	}
+
+	public List<ChickenDto> getChickens() {
+		return chickens;
+	}
+
+	public void setChickens(List<ChickenDto> chickens) {
+		this.chickens = chickens;
+	}
+	
+	
 	
 }

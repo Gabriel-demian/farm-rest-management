@@ -22,7 +22,7 @@ public class Farm {
 	@Column(name="farm_id")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-	private Integer farmId;
+	private Integer id;
 	
 	@Column(name="farm_name")
 	@NotNull(message="Farm Name can't be null")
@@ -32,7 +32,7 @@ public class Farm {
 	private List<Chicken> chickens;
 	
 	@OneToMany(mappedBy= "farm")
-	private List<Egg> Eggs;
+	private List<Egg> eggs;
 	
 	@Column(name="chicken_bought")
 	private Integer chickenBought;
@@ -58,11 +58,11 @@ public class Farm {
 	}
 	
 	public List<Egg> getEggs() {
-		return Eggs;
+		return eggs;
 	}
 
 	public void setEggs(List<Egg> eggs) {
-		Eggs = eggs;
+		this.eggs = eggs;
 	}
 
 	public List<Chicken> getChickens() {
@@ -73,12 +73,12 @@ public class Farm {
 		this.chickens = chickens;
 	}
 
-	public Integer getFarmId() {
-		return farmId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setFarmId(Integer farmId) {
-		this.farmId = farmId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFarmName() {

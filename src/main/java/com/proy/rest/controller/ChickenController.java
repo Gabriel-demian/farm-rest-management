@@ -16,13 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proy.rest.dto.ChickenDto;
 import com.proy.rest.dto.mapper.ChickenMapper;
 import com.proy.rest.entity.Chicken;
+import com.proy.rest.entity.Farm;
 import com.proy.rest.services.ChickenService;
+import com.proy.rest.services.FarmService;
 
 @RestController
 @RequestMapping("/api/chickens")
@@ -32,23 +35,30 @@ public class ChickenController {
 	private ChickenService chickenService;
 	
 	@Autowired
+	private FarmService farmService;
+	
+	@Autowired
 	private ChickenMapper chickenMapper;
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public Collection<ChickenDto> getAllChickens(){
+	public Collection<ChickenDto> getChickens(@RequestParam(required = false) Integer farmId){
+		
+		if(farmId != null) {
+			return chickenMapper.getDto(chickenService.findByFarm(farmId));
+		}
 		
 		return chickenMapper.getDto(chickenService.findAll());
 	}
 
 	
-	@GetMapping(path = "/farm/{farmId}")
-	@ResponseStatus(HttpStatus.OK)
-	public Iterable<ChickenDto> getChickensByFarmId(@PathVariable Integer farmId){
-		
-		return chickenMapper.getDto(chickenService.findByFarm(farmId));
-		
-	}
+//	@GetMapping(path = "/farm/{farmId}")
+//	@ResponseStatus(HttpStatus.OK)
+//	public Iterable<ChickenDto> getChickensByFarmId(@PathVariable Integer farmId){
+//		
+//		return chickenMapper.getDto(chickenService.findByFarm(farmId));
+//		
+//	}
 	
 	
 	@GetMapping(path = "/{chickenId}")
@@ -65,12 +75,28 @@ public class ChickenController {
 	}
 	
 	
+	/**
+	 * @param dataChicken
+	 * @return
+	 */
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, 
 				produces = {MediaType.APPLICATION_JSON_VALUE} )
 	@ResponseStatus(HttpStatus.CREATED)
-	public ChickenDto createChicken(@RequestBody @Valid ChickenDto dataChicken) {
+	public ResponseEntity<ChickenDto> createChicken(@RequestBody @Valid ChickenDto dataChicken) {
 		
-		return chickenMapper.getDto(chickenService.saveOrUpdateChicken(chickenMapper.fillEntity(new Chicken(), dataChicken)));
+		Optional<Farm> farm =  farmService.findById(dataChicken.getFarm().getId());
+		
+		if(farm.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		Chicken chicken = chickenMapper.fillEntity(new Chicken(), dataChicken);
+		
+		chicken.setFarm(farm.get());
+		
+		Chicken chickenSaved = chickenService.saveOrUpdateChicken(chicken);
+		
+		return ResponseEntity.ok(chickenMapper.getDto(chickenSaved));
 		
 	}
 	

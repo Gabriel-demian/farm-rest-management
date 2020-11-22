@@ -10,6 +10,6 @@ import com.proy.rest.entity.Farm;
 @Repository
 public interface FarmRepository extends JpaRepository<Farm, Integer>{
 	
-	List<Farm> findByFarmName(String farmName);
+	List<Farm> findByFarmName(String name);
 	
 }

@@ -10,6 +10,6 @@ import com.proy.rest.entity.Chicken;
 @Repository
 public interface ChickenRepository extends JpaRepository<Chicken, Integer>{
 	
-	List<Chicken> findByFarm(Integer farm);
+	List<Chicken> findByFarmId(Integer id);
 
 }

@@ -19,10 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proy.rest.dto.ChickenDto;
 import com.proy.rest.dto.EggDto;
 import com.proy.rest.dto.mapper.EggMapper;
-import com.proy.rest.entity.Chicken;
 import com.proy.rest.entity.Egg;
 import com.proy.rest.services.EggService;
 

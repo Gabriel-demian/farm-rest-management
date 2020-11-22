@@ -21,7 +21,7 @@ public class Egg {
 	@Column(name="egg_id")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-	private Integer eggId;
+	private Integer id;
 	
 	@ManyToOne()
 	@JoinColumn(name= "farm_id")
@@ -33,12 +33,14 @@ public class Egg {
 	@Column(name="expiration_date")
 	private LocalDateTime expirationDate;
 
-	public Integer getEggId() {
-		return eggId;
+	
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setEggId(Integer eggId) {
-		this.eggId = eggId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Farm getFarm() {
