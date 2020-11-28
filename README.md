@@ -2,6 +2,10 @@
  
 ![0 (2)](https://user-images.githubusercontent.com/57782295/99152996-47f96f80-2684-11eb-9b39-844c60a01033.jpg)
 
+# Front
+
+https://github.com/Gabriel-demian/farm-react-web 
+
 # TODO
 - [x] Finalizar el Rest controller de las Granjas y sus respectivos services y repo. 
 - [x] Finalizar el Rest controller de las Gallinas y sus respectivos services y repo.
@@ -9,9 +13,13 @@
 - [x] Generar una tabla clave valor de tipo diccionario, (Reference) en ella tendrá los precios de venta y "tiempo de vida de un huevo y gallina"
 - [x] Verificar que todos los métodos de los controllers funcionan correctamente. 
 - [x] Se agrega Swagger para documentación ( http://localhost:8080/swagger/dist/index.html#/ )
-- [ ] Generar las clases DTO
+- [x] Generar las clases DTO
 - [ ] Generar un servicio para la lógica de negocio para no sobrecargar el Controller.
-- [ ] Generar una tabla clave valor de tipo diccionario donde tendrá los id de las granjas y de los usuarios asignados
+- [ ] Configurar los constraints a las tablas
+- [ ] Agregar validadores a las clases Entidad
+- [ ] Generar los casos de prueba
+- [ ] Generar los casos de uso
+- [x] Generar una tabla clave valor de tipo diccionario donde tendrá los id de las granjas y de los usuarios asignados
 - [ ] Generar dos tablas, una de transacciones y la otra con los detalles de las transacciones
 - [ ] Seguir actualizando la lista
 - [ ] Agregar algo interesante acá
@@ -62,19 +70,69 @@
 # Datos de una granja JSON
 
 - Datos ejemplo para un update completo. URL: http://localhost:8080/api/farms/1 Method:PUT
-  - En caso de crear una granja nueva no incluir el farmId en el cuerpo ni en la url http://localhost:8080/api/farms Method: POST
+<details>
+  <summary>Click to expand!</summary>
+
 ```
 {
-    "farmId": 1,
-    "farmName": "Test  Farm!",
-    "chickenBought": 80,
-    "chickenSold": 10,
-    "eggBought": 0,
-    "eggSold": 24,
-    "income": 350,
-    "expenses": 100
+  "id": 1,
+  "farmName": "Test  Farm!",
+  "chickenBought": 80,
+  "chickenSold": 10,
+  "eggBought": 0,
+  "eggSold": 24,
+  "income": 350,
+  "expenses": 100,
+  "eggs": [
+    {
+      "id": 1,
+      "farm": null,
+      "birthDate": "2020-11-30T00:00:00",
+      "expirationDate": "2020-11-30T00:00:00"
+    },
+    {
+      "id": 3,
+      "farm": null,
+      "birthDate": "2020-11-29T00:00:00",
+      "expirationDate": "2020-12-29T00:00:00"
+    },
+    {
+      "id": 6,
+      "farm": null,
+      "birthDate": "2020-11-30T00:00:00",
+      "expirationDate": "2020-12-30T00:00:00"
+    },
+    {
+      "id": 9,
+      "farm": null,
+      "birthDate": "2020-11-22T00:00:00",
+      "expirationDate": "2020-11-22T00:00:00"
+    }
+  ],
+  "chickens": [
+    {
+      "id": 1,
+      "farm": null,
+      "birthDate": "2020-11-22T00:00:00",
+      "expirationDate": "2021-11-22T00:00:00"
+    },
+    {
+      "id": 2,
+      "farm": null,
+      "birthDate": "2020-11-22T00:00:00",
+      "expirationDate": "2020-11-22T00:00:00"
+    },
+    {
+      "id": 3,
+      "farm": null,
+      "birthDate": "2020-11-22T00:00:00",
+      "expirationDate": "2020-11-22T00:00:00"
+    }
+  ]
 }
 ```
+
+</details>
 
 # Datos usados en Postman (urls, ejemplos de métodos que se pueden usar con la api)
 
