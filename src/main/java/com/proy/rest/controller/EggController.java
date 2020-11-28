@@ -16,13 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proy.rest.dto.EggDto;
 import com.proy.rest.dto.mapper.EggMapper;
 import com.proy.rest.entity.Egg;
+import com.proy.rest.entity.Farm;
 import com.proy.rest.services.EggService;
+import com.proy.rest.services.FarmService;
 
 @RestController
 @RequestMapping("/api/eggs")
@@ -34,22 +37,29 @@ public class EggController {
 	@Autowired
 	EggMapper eggMapper;
 	
+	@Autowired
+	private FarmService farmService;
+	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public Collection<EggDto> getAllEggs(){
+	public Collection<EggDto> getEggs(@RequestParam(required = false) Integer farmId){
+		
+		if(farmId != null) {
+			return eggMapper.getDto(eggService.findByFarm(farmId));
+		}
 		
 		return eggMapper.getDto(eggService.findAll());
 		
 	}
 	
 	
-	@GetMapping(path = "/farm/{farmId}")
-	@ResponseStatus(HttpStatus.OK)
-	public Iterable<EggDto> getEggsByFarmId(@PathVariable Integer farmId){
-		
-		return eggMapper.getDto(eggService.findByFarmId(farmId));
-		
-	}
+//	@GetMapping(path = "/farm/{farmId}")
+//	@ResponseStatus(HttpStatus.OK)
+//	public Iterable<EggDto> getEggsByFarmId(@PathVariable Integer farmId){
+//		
+//		return eggMapper.getDto(eggService.findByFarm(farmId));
+//		
+//	}
 	
 	
 	@GetMapping(path = "/{eggId}")
@@ -64,16 +74,28 @@ public class EggController {
 		
 		return ResponseEntity.ok(eggMapper.getDto(egg.get()));
 		
-		
 	}
 	
 	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, 
 				produces = {MediaType.APPLICATION_JSON_VALUE} )
 	@ResponseStatus(HttpStatus.CREATED)
-	public EggDto createEgg(@RequestBody @Valid EggDto dataEgg) {
+	public ResponseEntity<EggDto> createEgg(@RequestBody @Valid EggDto dataEgg) {
 		
-		return eggMapper.getDto(eggService.saveOrUpdateEgg(eggMapper.fillEntity(new Egg(), dataEgg)));
+		
+		Optional<Farm> farm = farmService.findById(dataEgg.getFarm().getId());
+		
+		if(farm.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		Egg egg = eggMapper.fillEntity(new Egg(), dataEgg);
+		
+		egg.setFarm(farm.get());
+		
+		Egg eggSaved = eggService.saveOrUpdateEgg(egg);	
+		
+		return ResponseEntity.ok(eggMapper.getDto(eggSaved));
 		
 	}
 	

@@ -11,7 +11,7 @@ public interface EggService {
 	
 	public Optional<Egg> findById(Integer eggId);
 	
-	public List<Egg> findByFarmId(Integer farmId);
+	public List<Egg> findByFarm(Integer farmId);
 	
 	public Egg saveOrUpdateEgg(Egg theEgg);
 

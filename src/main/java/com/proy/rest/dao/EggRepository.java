@@ -10,6 +10,6 @@ import com.proy.rest.entity.Egg;
 @Repository
 public interface EggRepository extends JpaRepository<Egg, Integer>{
 	
-	List<Egg> findByFarm(Integer id);
+	List<Egg> findByFarmId(Integer id);
 
 }

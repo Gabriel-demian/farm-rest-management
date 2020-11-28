@@ -28,9 +28,9 @@ public class EggServiceImpl implements EggService {
 	
 	@Override
 	@Transactional
-	public List<Egg> findByFarmId(Integer farmId) {
+	public List<Egg> findByFarm(Integer farmId) {
 		
-		return eggRepository.findByFarm(farmId);
+		return eggRepository.findByFarmId(farmId);
 		
 	}
 
