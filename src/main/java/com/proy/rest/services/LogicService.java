@@ -2,8 +2,7 @@ package com.proy.rest.services;
 
 import java.math.BigDecimal;
 import java.util.Collection;
-
-import com.proy.rest.dto.FarmDto;
+import com.proy.rest.entity.Farm;
 
 public interface LogicService {
 	
@@ -14,7 +13,7 @@ public interface LogicService {
 	 *  @param Collection<Integer> chickenIds
 	 *  @return ?? void
 	 */
-	public void sellChicken(FarmDto theFarm, Integer farmId, Collection<Integer> chickenIds);
+	public void sellChicken(Farm theFarm, Collection<Integer> chickenIds);
 
 	/**
 	 *  This method will contain the chicken sale logic
@@ -23,7 +22,7 @@ public interface LogicService {
 	 *  @param Collection<Integer> eggIds
 	 *  @return void (Next update!!  will return something)
 	 */
-	void sellEgg(FarmDto theFarm, Integer farmId, Collection<Integer> eggIds);
+	void sellEgg(Farm theFarm, Collection<Integer> eggIds);
 
 	/**
 	 *  This method will contain the chicken purchase logic
@@ -33,7 +32,17 @@ public interface LogicService {
 	 *  @param BigDecimal chickenPrice
 	 *  @return ?? void
 	 */
-	void buyChicken(FarmDto theFarm, Integer farmId, Integer amountOfChickens, BigDecimal chickenPrice);
+	void buyChicken(Farm theFarm, Integer amountOfChickens, BigDecimal chickenPrice);
+
+	/**
+	 *  This method will contain the eggs purchase logic
+	 *  @param FarmDto theFarm
+	 *  @param Integer farmId
+	 *  @param Integer amountOfEggs
+	 *  @param BigDecimal eggPrice
+	 *  @return ?? void
+	 */
+	void buyEgg(Farm theFarm, Integer amountOfEggs, BigDecimal eggPrice);
 	
 	
 }

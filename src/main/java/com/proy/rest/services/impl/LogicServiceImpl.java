@@ -3,12 +3,9 @@ package com.proy.rest.services.impl;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 import com.proy.rest.dto.ChickenDto;
 import com.proy.rest.dto.EggDto;
-import com.proy.rest.dto.FarmDto;
 import com.proy.rest.dto.mapper.ChickenMapper;
 import com.proy.rest.dto.mapper.EggMapper;
 import com.proy.rest.dto.mapper.FarmMapper;
@@ -21,6 +18,8 @@ import com.proy.rest.services.EggService;
 import com.proy.rest.services.FarmService;
 import com.proy.rest.services.LogicService;
 import com.proy.rest.services.ReferenceService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * 
  * @author Gabriel
@@ -62,11 +61,11 @@ public class LogicServiceImpl implements LogicService{
 	 *  @return ?? void
 	 */
 	@Override
-	public void sellChicken(FarmDto theFarm, Integer farmId, Collection<Integer> chickenIds) {
+	public void sellChicken(Farm theFarm, Collection<Integer> chickenIds) {
 		
 		String referenceKey = "chSalePrice";
 		
-		incomeFarmLogic(theFarm, farmId, referenceKey);
+		incomeFarmLogic(theFarm, referenceKey);
 		
 		for(Integer id : chickenIds) {
 			chickenService.deleteById(id);
@@ -82,11 +81,11 @@ public class LogicServiceImpl implements LogicService{
 	 *  @return void (Next update!!  will return something)
 	 */
 	@Override
-	public void sellEgg(FarmDto theFarm, Integer farmId, Collection<Integer> eggIds) {
+	public void sellEgg(Farm theFarm, Collection<Integer> eggIds) {
 		
 		String referenceKey = "eggSalePrice";
 		
-		incomeFarmLogic(theFarm, farmId, referenceKey);
+		incomeFarmLogic(theFarm, referenceKey);
 		
 		for(Integer id : eggIds) {
 			chickenService.deleteById(id);
@@ -107,9 +106,7 @@ public class LogicServiceImpl implements LogicService{
 	 *  @return ?? void
 	 */
 	@Override
-	public void buyChicken(FarmDto theFarm, Integer farmId, Integer amountOfChickens, BigDecimal chickenPrice) {
-		
-		Optional<Farm> farm = farmService.findById(farmId);
+	public void buyChicken(Farm theFarm, Integer amountOfChickens, BigDecimal chickenPrice) {
 		
 		String referenceKey = "chickenExpirationDate";
 		
@@ -120,18 +117,17 @@ public class LogicServiceImpl implements LogicService{
 		 */
 		for (int i = 0; i < amountOfChickens; i++) {
 			
-			LocalDateTime initDate = LocalDateTime.now();
-			LocalDateTime endDate = LocalDateTime.now();
-			
-			endDate.plusDays(Long.parseLong(referencePrice.get().getValue()));
+			LocalDateTime date = LocalDateTime.now();
 			
 			ChickenDto newChicken = new ChickenDto();
 			
-			newChicken.getFarm().setId(farmId);
+			newChicken.getFarm().setId(theFarm.getId());
 			
-			newChicken.setBirthDate(initDate);
+			newChicken.setBirthDate(date);
 			
-			newChicken.setExpirationDate(endDate);
+			date = date.plusDays(Long.parseLong(referencePrice.get().getValue()));
+			
+			newChicken.setExpirationDate(date);
 			
 			chickenService.saveOrUpdateChicken(chickenMapper.fillEntity(new Chicken(), newChicken));
 			
@@ -144,7 +140,7 @@ public class LogicServiceImpl implements LogicService{
 		
 		theFarm.setExpenses(farmExpenses.add(purchaseExpenses));
 		
-		farmService.saveOrUpdateFarm(farmMapper.fillEntity(farm.get(), theFarm));
+		farmService.saveOrUpdateFarm(theFarm);
 		
 	}
 	
@@ -156,9 +152,8 @@ public class LogicServiceImpl implements LogicService{
 	 *  @param BigDecimal eggPrice
 	 *  @return ?? void
 	 */
-	public void buyEgg(FarmDto theFarm, Integer farmId, Integer amountOfEggs, BigDecimal eggPrice) {
-		
-		Optional<Farm> farm = farmService.findById(farmId);
+	@Override
+	public void buyEgg(Farm theFarm, Integer amountOfEggs, BigDecimal eggPrice) {
 		
 		String referenceKey = "eggExpirationDate";
 		
@@ -169,18 +164,17 @@ public class LogicServiceImpl implements LogicService{
 		 */
 		for (int i = 0; i < amountOfEggs; i++) {
 			
-			LocalDateTime initDate = LocalDateTime.now();
-			LocalDateTime endDate = LocalDateTime.now();
-			
-			endDate.plusDays(Long.parseLong(referencePrice.get().getValue()));
+			LocalDateTime date = LocalDateTime.now();
 			
 			EggDto newEgg = new EggDto();
 			
-			newEgg.getFarm().setId(farmId);
+			newEgg.getFarm().setId(theFarm.getId());
 			
-			newEgg.setBirthDate(initDate);
+			newEgg.setBirthDate(date);
 			
-			newEgg.setExpirationDate(endDate);
+			date = date.plusDays(Long.parseLong(referencePrice.get().getValue()));
+			
+			newEgg.setExpirationDate(date);
 			
 			eggService.saveOrUpdateEgg(eggMapper.fillEntity(new Egg(), newEgg));
 			
@@ -193,7 +187,7 @@ public class LogicServiceImpl implements LogicService{
 		
 		theFarm.setExpenses(farmExpenses.add(purchaseExpenses));
 		
-		farmService.saveOrUpdateFarm(farmMapper.fillEntity(farm.get(), theFarm));
+		farmService.saveOrUpdateFarm(theFarm);
 		
 	}
 	
@@ -209,9 +203,7 @@ public class LogicServiceImpl implements LogicService{
 	 * @param farmId
 	 * @param referenceKey
 	 */
-	private void incomeFarmLogic(FarmDto theFarm, Integer farmId, String referenceKey) {
-		
-		Optional<Farm> farm = farmService.findById(farmId);
+	private void incomeFarmLogic(Farm theFarm, String referenceKey) {
 		
 		Optional<Reference> referencePrice = referenceService.findById(referenceKey);
 		
@@ -221,7 +213,7 @@ public class LogicServiceImpl implements LogicService{
 		
 		theFarm.setExpenses(income.add(farmIncome));
 		
-		farmService.saveOrUpdateFarm(farmMapper.fillEntity(farm.get(), theFarm));
+		farmService.saveOrUpdateFarm(theFarm);
 	}
 	
 	
