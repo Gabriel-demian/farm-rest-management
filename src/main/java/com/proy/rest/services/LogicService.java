@@ -25,6 +25,14 @@ public interface LogicService {
 	 */
 	void sellEgg(FarmDto theFarm, Integer farmId, Collection<Integer> eggIds);
 
+	/**
+	 *  This method will contain the chicken purchase logic
+	 *  @param FarmDto theFarm
+	 *  @param Integer farmId
+	 *  @param Integer amountOfChickens
+	 *  @param BigDecimal chickenPrice
+	 *  @return ?? void
+	 */
 	void buyChicken(FarmDto theFarm, Integer farmId, Integer amountOfChickens, BigDecimal chickenPrice);
 	
 	

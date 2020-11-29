@@ -7,11 +7,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 import com.proy.rest.dto.ChickenDto;
+import com.proy.rest.dto.EggDto;
 import com.proy.rest.dto.FarmDto;
 import com.proy.rest.dto.mapper.ChickenMapper;
 import com.proy.rest.dto.mapper.EggMapper;
 import com.proy.rest.dto.mapper.FarmMapper;
 import com.proy.rest.entity.Chicken;
+import com.proy.rest.entity.Egg;
 import com.proy.rest.entity.Farm;
 import com.proy.rest.entity.Reference;
 import com.proy.rest.services.ChickenService;
@@ -43,10 +45,13 @@ public class LogicServiceImpl implements LogicService{
 	FarmMapper farmMapper;
 	
 	@Autowired
+	EggMapper eggMapper;
+	
+	@Autowired
 	ChickenMapper chickenMapper;
 	
 	//************************************************************************
-	//*BUSINESS LOGIC
+	//*SALE LOGIC
 	//************************************************************************
 	
 	/**
@@ -69,6 +74,38 @@ public class LogicServiceImpl implements LogicService{
 		
 	}
 	
+	/**
+	 *  This method will contain the chicken sale logic
+	 *  @param FarmDto theFarm
+	 *  @param Integer farmId
+	 *  @param Collection<Integer> eggIds
+	 *  @return void (Next update!!  will return something)
+	 */
+	@Override
+	public void sellEgg(FarmDto theFarm, Integer farmId, Collection<Integer> eggIds) {
+		
+		String referenceKey = "eggSalePrice";
+		
+		incomeFarmLogic(theFarm, farmId, referenceKey);
+		
+		for(Integer id : eggIds) {
+			chickenService.deleteById(id);
+		}
+		
+	}
+	
+	//************************************************************************
+	//*PURCHASE LOGIC
+	//************************************************************************
+	
+	/**
+	 *  This method will contain the chicken purchase logic
+	 *  @param FarmDto theFarm
+	 *  @param Integer farmId
+	 *  @param Integer amountOfChickens
+	 *  @param BigDecimal chickenPrice
+	 *  @return ?? void
+	 */
 	@Override
 	public void buyChicken(FarmDto theFarm, Integer farmId, Integer amountOfChickens, BigDecimal chickenPrice) {
 		
@@ -79,7 +116,7 @@ public class LogicServiceImpl implements LogicService{
 		Optional<Reference> referencePrice = referenceService.findById(referenceKey);
 		
 		/**
-		 * create a new chicken
+		 * create a new chickens
 		 */
 		for (int i = 0; i < amountOfChickens; i++) {
 			
@@ -112,24 +149,55 @@ public class LogicServiceImpl implements LogicService{
 	}
 	
 	/**
-	 *  This method will contain the chicken sale logic
+	 *  This method will contain the eggs purchase logic
 	 *  @param FarmDto theFarm
 	 *  @param Integer farmId
-	 *  @param Collection<Integer> eggIds
-	 *  @return void (Next update!!  will return something)
+	 *  @param Integer amountOfEggs
+	 *  @param BigDecimal eggPrice
+	 *  @return ?? void
 	 */
-	@Override
-	public void sellEgg(FarmDto theFarm, Integer farmId, Collection<Integer> eggIds) {
+	public void buyEgg(FarmDto theFarm, Integer farmId, Integer amountOfEggs, BigDecimal eggPrice) {
 		
-		String referenceKey = "eggSalePrice";
+		Optional<Farm> farm = farmService.findById(farmId);
 		
-		incomeFarmLogic(theFarm, farmId, referenceKey);
+		String referenceKey = "eggExpirationDate";
 		
-		for(Integer id : eggIds) {
-			chickenService.deleteById(id);
+		Optional<Reference> referencePrice = referenceService.findById(referenceKey);
+		
+		/**
+		 * create a new eggs
+		 */
+		for (int i = 0; i < amountOfEggs; i++) {
+			
+			LocalDateTime initDate = LocalDateTime.now();
+			LocalDateTime endDate = LocalDateTime.now();
+			
+			endDate.plusDays(Long.parseLong(referencePrice.get().getValue()));
+			
+			EggDto newEgg = new EggDto();
+			
+			newEgg.getFarm().setId(farmId);
+			
+			newEgg.setBirthDate(initDate);
+			
+			newEgg.setExpirationDate(endDate);
+			
+			eggService.saveOrUpdateEgg(eggMapper.fillEntity(new Egg(), newEgg));
+			
 		}
 		
+		
+		BigDecimal farmExpenses = theFarm.getExpenses();
+		
+		BigDecimal purchaseExpenses = eggPrice.multiply(new BigDecimal(amountOfEggs));
+		
+		theFarm.setExpenses(farmExpenses.add(purchaseExpenses));
+		
+		farmService.saveOrUpdateFarm(farmMapper.fillEntity(farm.get(), theFarm));
+		
 	}
+	
+	
 
 	//************************************************************************
 	//*REUSABLE METHODS
@@ -157,26 +225,6 @@ public class LogicServiceImpl implements LogicService{
 	}
 	
 	
-	/**
-	 * This method contains the expenses logic of a farm
-	 * @param theFarm
-	 * @param farmId
-	 * @param referenceKey
-	 */
-	private void expenseFarmLogic(FarmDto theFarm, Integer farmId, String referenceKey) {
-		
-		Optional<Farm> farm = farmService.findById(farmId);
-		
-		Optional<Reference> referencePrice = referenceService.findById(referenceKey);
-		
-		BigDecimal farmExpenses = theFarm.getExpenses();
-		
-		BigDecimal expenses = new BigDecimal(referencePrice.get().getValue());
-		
-		theFarm.setExpenses(expenses.add(farmExpenses));
-		
-		farmService.saveOrUpdateFarm(farmMapper.fillEntity(farm.get(), theFarm));
-	}
-	
+
 	
 }
