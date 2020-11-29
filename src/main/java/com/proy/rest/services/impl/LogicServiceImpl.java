@@ -38,6 +38,10 @@ public class LogicServiceImpl implements LogicService{
 	@Autowired
 	FarmMapper farmMapper;
 	
+	//************************************************************************
+	//*BUSINESS LOGIC
+	//************************************************************************
+	
 	/**
 	 *  This method will contain the chicken sale logic
 	 *  @param FarmDto theFarm
@@ -78,6 +82,10 @@ public class LogicServiceImpl implements LogicService{
 		
 	}
 
+	//************************************************************************
+	//*REUSABLE METHODS
+	//************************************************************************
+	
 	/**
 	 * This method contains the profit logic of a farm
 	 * @param theFarm
