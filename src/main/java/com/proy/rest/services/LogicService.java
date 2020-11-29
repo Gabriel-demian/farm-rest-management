@@ -1,26 +1,28 @@
 package com.proy.rest.services;
 
+import java.util.Collection;
+
 import com.proy.rest.dto.FarmDto;
 
 public interface LogicService {
 	
 	/**
-	 * this method will contain the chicken sale logic
+	 *  This method will contain the chicken sale logic
 	 *  @param FarmDto theFarm
 	 *  @param Integer farmId
-	 *  @param Integer chickenId
+	 *  @param Collection<Integer> chickenIds
 	 *  @return ?? void
 	 */
-	public void sellChicken(FarmDto theFarm, Integer farmId, Integer chickenId);
+	public void sellChicken(FarmDto theFarm, Integer farmId, Collection<Integer> chickenIds);
 
 	/**
-	 * this method will contain the egg sale logic
+	 *  This method will contain the chicken sale logic
 	 *  @param FarmDto theFarm
 	 *  @param Integer farmId
-	 *  @param Integer eggId
-	 *  @return ?? void
+	 *  @param Collection<Integer> eggIds
+	 *  @return void (Next update!!  will return something)
 	 */
-	void sellEgg(FarmDto theFarm, Integer farmId, Integer eggId);
+	void sellEgg(FarmDto theFarm, Integer farmId, Collection<Integer> eggIds);
 	
 	
 }

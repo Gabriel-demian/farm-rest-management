@@ -1,6 +1,7 @@
 package com.proy.rest.services.impl;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +42,19 @@ public class LogicServiceImpl implements LogicService{
 	 *  This method will contain the chicken sale logic
 	 *  @param FarmDto theFarm
 	 *  @param Integer farmId
-	 *  @param Integer chickenId
+	 *  @param Collection<Integer> chickenIds
 	 *  @return ?? void
 	 */
 	@Override
-	public void sellChicken(FarmDto theFarm, Integer farmId, Integer chickenId) {
+	public void sellChicken(FarmDto theFarm, Integer farmId, Collection<Integer> chickenIds) {
 		
 		String referenceKey = "chSalePrice";
 		
 		incomeFarmLogic(theFarm, farmId, referenceKey);
 		
-		chickenService.deleteById(chickenId);
+		for(Integer id : chickenIds) {
+			chickenService.deleteById(id);
+		}
 		
 	}
 	
@@ -59,17 +62,19 @@ public class LogicServiceImpl implements LogicService{
 	 *  This method will contain the chicken sale logic
 	 *  @param FarmDto theFarm
 	 *  @param Integer farmId
-	 *  @param Integer chickenId
+	 *  @param Collection<Integer> eggIds
 	 *  @return void (Next update!!  will return something)
 	 */
 	@Override
-	public void sellEgg(FarmDto theFarm, Integer farmId, Integer eggId) {
+	public void sellEgg(FarmDto theFarm, Integer farmId, Collection<Integer> eggIds) {
 		
 		String referenceKey = "eggSalePrice";
 		
 		incomeFarmLogic(theFarm, farmId, referenceKey);
 		
-		chickenService.deleteById(eggId);
+		for(Integer id : eggIds) {
+			chickenService.deleteById(id);
+		}
 		
 	}
 
@@ -93,6 +98,26 @@ public class LogicServiceImpl implements LogicService{
 		farmService.saveOrUpdateFarm(farmMapper.fillEntity(farm.get(), theFarm));
 	}
 	
+	
+	/**
+	 * This method contains the expenses logic of a farm
+	 * @param theFarm
+	 * @param farmId
+	 * @param referenceKey
+	 */
+	private void expenseFarmLogic(FarmDto theFarm, Integer farmId, String referenceKey) {
+		Optional<Farm> farm = farmService.findById(farmId);
+		
+		Optional<Reference> referencePrice = referenceService.findById(referenceKey);
+		
+		BigDecimal farmExpenses = theFarm.getExpenses();
+		
+		BigDecimal expenses = new BigDecimal(referencePrice.get().getValue());
+		
+		theFarm.setExpenses(expenses.add(farmExpenses));
+		
+		farmService.saveOrUpdateFarm(farmMapper.fillEntity(farm.get(), theFarm));
+	}
 	
 	
 }
