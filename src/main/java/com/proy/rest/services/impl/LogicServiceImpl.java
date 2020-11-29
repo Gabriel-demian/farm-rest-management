@@ -24,7 +24,7 @@ import com.proy.rest.services.ReferenceService;
 /**
  * 
  * @author Gabriel
- *	this service will contain all the business logic of the program.
+ * This service will contain all the business logic of the program.
  *
  */
 public class LogicServiceImpl implements LogicService{
