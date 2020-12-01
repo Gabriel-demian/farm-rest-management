@@ -14,7 +14,9 @@ https://github.com/Gabriel-demian/farm-react-web
 - [x] Verificar que todos los métodos de los controllers funcionan correctamente. 
 - [x] Se agrega Swagger para documentación ( http://localhost:8080/swagger/dist/index.html#/ )
 - [x] Generar las clases DTO
-- [ ] Generar un servicio para la lógica de negocio para no sobrecargar el Controller.
+- [x] Generar un servicio para la lógica de negocio para no sobrecargar el Controller. (LogicService y LogicServiceImpl)
+     - [x] Generar la lógica de compra de huevos y gallinas
+     - [x] Generar la lógica de venta de huevos y gallinas
 - [ ] Configurar los constraints a las tablas
 - [ ] Agregar validadores a las clases Entidad
 - [ ] Generar los casos de prueba
