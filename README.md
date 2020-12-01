@@ -65,6 +65,31 @@ https://github.com/Gabriel-demian/farm-react-web
    CREATE TABLE `farm-management`.`reference` (
      `key` VARCHAR(45) NOT NULL,
      `value` VARCHAR(45) NULL);
+     
+     ---------------------------------------------------------
+   ALTER TABLE `farm-management`.`egg` 
+     ADD INDEX `farm_id_idx` (`farm_id` ASC) VISIBLE;
+     ;
+     ALTER TABLE `farm-management`.`egg` 
+     ADD CONSTRAINT `farm_id`
+       FOREIGN KEY (`farm_id`)
+       REFERENCES `farm-management`.`farm` (`farm_id`)
+       ON DELETE CASCADE
+       ON UPDATE NO ACTION;
+     
+     
+     
+   ALTER TABLE `farm-management`.`chicken` 
+     ADD INDEX `farm_id_idx` (`farm_id` ASC) VISIBLE;
+     ;
+     ALTER TABLE `farm-management`.`chicken` 
+     ADD CONSTRAINT `farm_id`
+       FOREIGN KEY (`farm_id`)
+       REFERENCES `farm-management`.`farm` (`farm_id`)
+       ON DELETE CASCADE
+       ON UPDATE NO ACTION;
+
+     
   ```
      
 </details>
