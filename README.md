@@ -17,7 +17,7 @@ https://github.com/Gabriel-demian/farm-react-web
 - [x] Generar un servicio para la lógica de negocio para no sobrecargar el Controller. (LogicService y LogicServiceImpl)
      - [x] Generar la lógica de compra de huevos y gallinas
      - [x] Generar la lógica de venta de huevos y gallinas
-- [ ] Configurar los constraints a las tablas
+- [x] Configurar los constraints a las tablas
 - [ ] Agregar validadores a las clases Entidad
 - [ ] Generar los casos de prueba
 - [ ] Generar los casos de uso
