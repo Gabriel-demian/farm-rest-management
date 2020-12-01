@@ -20,7 +20,7 @@ https://github.com/Gabriel-demian/farm-react-web
 - [x] Configurar los constraints a las tablas
 - [ ] Agregar validadores a las clases Entidad
 - [ ] Generar los casos de prueba
-- [ ] Generar los casos de uso
+- [ ] Generar los casos de uso (formalmente, solo se encuentran comentados en "Algo de lógica de negocio")
 - [x] Generar una tabla clave valor de tipo diccionario donde tendrá los id de las granjas y de los usuarios asignados
 - [ ] Generar dos tablas, una de transacciones y la otra con los detalles de las transacciones
 - [ ] Seguir actualizando la lista
