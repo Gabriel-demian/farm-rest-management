@@ -14,11 +14,13 @@ https://github.com/Gabriel-demian/farm-react-web
 - [x] Verificar que todos los métodos de los controllers funcionan correctamente. 
 - [x] Se agrega Swagger para documentación ( http://localhost:8080/swagger/dist/index.html#/ )
 - [x] Generar las clases DTO
-- [ ] Generar un servicio para la lógica de negocio para no sobrecargar el Controller.
-- [ ] Configurar los constraints a las tablas
+- [x] Generar un servicio para la lógica de negocio para no sobrecargar el Controller. (LogicService y LogicServiceImpl)
+     - [x] Generar la lógica de compra de huevos y gallinas
+     - [x] Generar la lógica de venta de huevos y gallinas
+- [x] Configurar los constraints a las tablas
 - [ ] Agregar validadores a las clases Entidad
 - [ ] Generar los casos de prueba
-- [ ] Generar los casos de uso
+- [ ] Generar los casos de uso (formalmente, solo se encuentran comentados en "Algo de lógica de negocio")
 - [x] Generar una tabla clave valor de tipo diccionario donde tendrá los id de las granjas y de los usuarios asignados
 - [ ] Generar dos tablas, una de transacciones y la otra con los detalles de las transacciones
 - [ ] Seguir actualizando la lista
@@ -63,6 +65,31 @@ https://github.com/Gabriel-demian/farm-react-web
    CREATE TABLE `farm-management`.`reference` (
      `key` VARCHAR(45) NOT NULL,
      `value` VARCHAR(45) NULL);
+     
+     ---------------------------------------------------------
+   ALTER TABLE `farm-management`.`egg` 
+     ADD INDEX `farm_id_idx` (`farm_id` ASC) VISIBLE;
+     ;
+     ALTER TABLE `farm-management`.`egg` 
+     ADD CONSTRAINT `farm_id`
+       FOREIGN KEY (`farm_id`)
+       REFERENCES `farm-management`.`farm` (`farm_id`)
+       ON DELETE CASCADE
+       ON UPDATE NO ACTION;
+     
+     
+     
+   ALTER TABLE `farm-management`.`chicken` 
+     ADD INDEX `farm_id_idx` (`farm_id` ASC) VISIBLE;
+     ;
+     ALTER TABLE `farm-management`.`chicken` 
+     ADD CONSTRAINT `farm_id`
+       FOREIGN KEY (`farm_id`)
+       REFERENCES `farm-management`.`farm` (`farm_id`)
+       ON DELETE CASCADE
+       ON UPDATE NO ACTION;
+
+     
   ```
      
 </details>
